@@ -1,7 +1,13 @@
+import EventsList from '@/components/events/events-list'
+import { getFeaturedEvents } from '@/data/events'
+
 export default function HomePage() {
+  const events = getFeaturedEvents()
+
   return (
-    <main>
+    <main className='container mx-auto'>
       <h1>Home Page</h1>
+      <EventsList events={events} />
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Button from './button'
 
 export default function EventItem({ id, title, location, date, image }) {
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
@@ -26,11 +27,7 @@ export default function EventItem({ id, title, location, date, image }) {
           {formattedAddress}
         </address>
         <div className='mt-4 float-right'>
-          <Link
-            href={`/events/${id}`}
-            className='py-2 px-4 bg-emerald-500 rounded-lg text-zinc-200 font-medium'>
-            Explore Event
-          </Link>
+          <Button link={`/events/${id}`}>Explore Event</Button>
         </div>
       </div>
     </li>

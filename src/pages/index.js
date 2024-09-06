@@ -1,4 +1,4 @@
-import EventsList from '@/components/events/events-list'
+import EventsList from '@/components/events-list'
 import { getFeaturedEvents } from '@/data/events'
 
 export default function HomePage() {

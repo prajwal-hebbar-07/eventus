@@ -1,13 +1,33 @@
 import { useRef } from 'react'
 import Button from './button'
+import { useRouter } from 'next/router'
 
 export default function FilterForm() {
+  const yearInputRef = useRef()
+  const monthInputRef = useRef()
+  const router = useRouter()
+
+  function submitHandler(event) {
+    event.preventDefault()
+    const year = yearInputRef.current.value
+    const month = monthInputRef.current.value
+
+    const fullpath = `/events/${year}/${month}`
+
+    router.push(fullpath)
+  }
+
   return (
-    <form className='bg-gradient-to-r from-white to-fuchsia-100/50 py-6 px-8 rounded-xl flex flex-row justify-around items-center shadow-lg'>
+    <form
+      className='bg-gradient-to-r from-white to-fuchsia-100/50 py-6 px-8 rounded-xl flex flex-row justify-around items-center shadow-lg'
+      onSubmit={submitHandler}>
       <label htmlFor='year' className='text-xl font-bold text-emerald-500'>
         Year -
       </label>
-      <select id='year' className='bg-emerald-400/25 px-8 py-1 rounded-md mx-2'>
+      <select
+        ref={yearInputRef}
+        id='year'
+        className='bg-emerald-400/25 px-8 py-1 rounded-md mx-2'>
         <option value='2021'>2021</option>
         <option value='2022'>2022</option>
       </select>
@@ -17,6 +37,7 @@ export default function FilterForm() {
         Month -
       </label>
       <select
+        ref={monthInputRef}
         id='month'
         className='bg-emerald-400/25 px-8 py-1 rounded-md mx-2'>
         <option value='1'>Jan</option>

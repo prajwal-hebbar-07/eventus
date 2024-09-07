@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 
 import { getEventById } from '@/data/events'
+import ErrorAlert from '@/components/error-alert'
 
 export default function EventDetailsPage() {
   const router = useRouter()
@@ -15,17 +16,11 @@ export default function EventDetailsPage() {
   const formattedAddress = event?.location.replace(', ', '\n')
 
   if (!event) {
-    return (
-      <div className='md:container mx-auto h-screen flex flex-col justify-center items-center'>
-        <p className='text-center text-5xl font-bold text-red-600'>
-          No Event Found!
-        </p>
-      </div>
-    )
+    return <ErrorAlert>No Event Found!</ErrorAlert>
   }
 
   return (
-    <div className='md:container mx-auto h-screen flex flex-col justify-center items-center'>
+    <div className='md:container mx-auto mt-8 flex flex-col justify-center items-center'>
       <h1 className='text-6xl text-sky-700 mb-8 drop-shadow-lg font-bold'>
         {event.title}
       </h1>
